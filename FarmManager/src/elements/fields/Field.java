@@ -1,10 +1,10 @@
-package fields;
+package elements.fields;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import animals.Animal;
-import main.AbstractElement;
+import elements.AbstractElement;
+import elements.animals.Animal;
 
 public class Field extends AbstractElement {
 	

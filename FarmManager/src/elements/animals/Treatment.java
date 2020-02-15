@@ -1,6 +1,6 @@
-package animals;
+package elements.animals;
 
-import main.AbstractElement;
+import elements.AbstractElement;
 
 public class Treatment extends AbstractElement {
 

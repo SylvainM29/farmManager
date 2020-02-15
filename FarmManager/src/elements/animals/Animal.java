@@ -1,12 +1,12 @@
-package animals;
+package elements.animals;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import fields.Field;
-import main.AbstractElement;
+import elements.AbstractElement;
+import elements.fields.Field;
 
 public class Animal extends AbstractElement {
 	

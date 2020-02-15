@@ -1,4 +1,4 @@
-package main;
+package elements;
 
 public abstract class AbstractElement {
 	protected int id;
