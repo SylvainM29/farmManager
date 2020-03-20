@@ -1,11 +1,7 @@
 package elements.animals;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import elements.AbstractElement;
 import elements.fields.Field;
 

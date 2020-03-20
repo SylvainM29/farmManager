@@ -7,14 +7,28 @@ import elements.AbstractElement;
 import elements.animals.Animal;
 
 public class Field extends AbstractElement {
-	
+
 	private Set<Animal> animals;
 	private Farming farming;
+	private String city;
+	private String adress;
+	private int squareMeters;
+	
+	public Field(String name, String city, String adress, int squareMeters, Set<Animal> animals, Farming farming) {
+		super(counter, name);
+		this.city = city;
+		this.adress = adress;
+		this.squareMeters = squareMeters;
+		this.animals = animals;
+		this.farming = farming;
+	}
 
-	public Field(int id, String name) {
-		super(id, name);
+	public Field(String name, String city, String adress, int squareMeters) {
+		super(counter, name);
+		this.city = city;
+		this.adress = adress;
+		this.squareMeters = squareMeters;
 		animals = new HashSet<>();
-		
 	}
 
 	public Set<Animal> getAnimals() {
@@ -39,6 +53,29 @@ public class Field extends AbstractElement {
 
 	public void setFarming(Farming farming) {
 		this.farming = farming;
+	}
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+	public int getSquareMeters() {
+		return squareMeters;
+	}
+
+	public void setSquareMeters(int squareMeters) {
+		this.squareMeters = squareMeters;
 	}
 
 }
