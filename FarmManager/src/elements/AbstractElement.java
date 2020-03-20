@@ -3,6 +3,7 @@ package elements;
 public abstract class AbstractElement {
 	protected int id;
 	protected String name;
+	protected static int counter = 0;
 	
 	public AbstractElement(int id, String name){
 		this.id = id;

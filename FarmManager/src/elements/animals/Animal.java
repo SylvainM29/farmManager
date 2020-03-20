@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import elements.AbstractElement;
 import elements.fields.Field;
@@ -15,10 +16,10 @@ public class Animal extends AbstractElement {
 	private List<Animal> childs;
 	private AnimalType type = AnimalType.VEAU;
 	private Field field;
-	private Map<Date, Treatment> treatment;
+	private List<Treatment> treatmentList;
 
-	public Animal(int id, String name, Animal father, Animal mother, AnimalType type) {
-		super(id, name);
+	public Animal(String name, Animal father, Animal mother, AnimalType type) {
+		super(counter, name);
 		this.father = father;
 		this.mother = mother;
 		this.childs = new ArrayList<>();
@@ -57,11 +58,20 @@ public class Animal extends AbstractElement {
 		this.field = field;
 	}
 
-	public Map<Date, Treatment> getTreatment() {
-		return treatment;
+	public Treatment getCurrentTreatment() {
+		Treatment lastTreatment = getLastTreatment();
+		return (lastTreatment.isFinished() ? null : lastTreatment);
+	}
+	
+	private Treatment getLastTreatment() {
+		return treatmentList.get(treatmentList.size()-1);
 	}
 
-	public void setTreatment(Map<Date, Treatment> treatment) {
-		this.treatment = treatment;
+	public List<Treatment> getTreatments() {
+		return treatmentList;
+	}
+
+	public void setTreatment( List<Treatment> treatmentList) {
+		this.treatmentList = treatmentList;
 	}
 }

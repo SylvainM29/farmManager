@@ -1,12 +1,22 @@
 package elements.animals;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import elements.AbstractElement;
 
 public class Treatment extends AbstractElement {
 
-	public Treatment(int id, String name) {
-		super(id, name);
-		// TODO Auto-generated constructor stub
+	Date startDate;
+	Date endDate;
+	
+	public Treatment(String name) {
+		super(counter, name);
+	}
+
+	public boolean isFinished() {
+		Date currentDate = new Date(Calendar.getInstance().getTime().getTime());
+		return currentDate.compareTo(endDate)>0;
 	}
 
 }
