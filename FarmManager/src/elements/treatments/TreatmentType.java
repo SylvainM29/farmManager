@@ -1,4 +1,4 @@
-package elements.animals;
+package elements.treatments;
 
 public class TreatmentType {
 	private String name;

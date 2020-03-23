@@ -2,20 +2,24 @@ package elements.animals;
 
 import java.util.ArrayList;
 import java.util.List;
-import elements.AbstractElement;
 import elements.fields.Field;
+import elements.treatments.Treatment;
 
-public class Animal extends AbstractElement {
+public class Animal {
+	private static int counter = 0;
 	
+	private String name;
+	private int id;
 	private Animal father;
 	private Animal mother;
 	private List<Animal> childs;
-	private AnimalType type = AnimalType.VEAU;
+	private AnimalType type = AnimalType.CALF;
 	private Field field;
 	private List<Treatment> treatmentList;
 
 	public Animal(String name, Animal father, Animal mother, AnimalType type) {
-		super(counter, name);
+		this.name=name;
+		this.id=counter++;
 		this.father = father;
 		this.mother = mother;
 		this.childs = new ArrayList<>();
@@ -70,5 +74,13 @@ public class Animal extends AbstractElement {
 
 	public void addTreatment(Treatment treatment) {
 		this.treatmentList.add(treatment);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return id;
 	}
 }

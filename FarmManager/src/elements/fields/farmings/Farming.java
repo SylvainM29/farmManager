@@ -1,34 +1,38 @@
-package elements.fields;
+package elements.fields.farmings;
 
 import java.sql.Date;
 
-import elements.AbstractElement;
+import elements.fields.Field;
 
-public class Farming extends AbstractElement {
+
+public class Farming {
+	private static int counter = 0;
+	
+	private String name;
+	private int id;
 	private Date startDate;
 	private Date endDate;
 	private Field field;
 	private FarmingType type;
-
-	public Farming(String name) {
-		super(counter, name);
-	}
 	
 	public Farming(String name, Date startDate, Date endDate) {
-		super(counter, name);
+		this.name = name;
+		this.id = counter++;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 	
 	public Farming(String name, Date startDate, Date endDate, Field field) {
-		super(counter, name);
+		this.name = name;
+		this.id = counter++;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.field = field;
 	}
 	
 	public Farming(String name, Field field) {
-		super(counter, name);
+		this.name = name;
+		this.id = counter++;
 		this.field = field;
 	}
 
@@ -62,6 +66,14 @@ public class Farming extends AbstractElement {
 
 	public void setType(FarmingType type) {
 		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

@@ -1,4 +1,4 @@
-package elements.fields;
+package elements.fields.farmings;
 
 public class FarmingType {
 	private String name;

@@ -3,11 +3,14 @@ package elements.fields;
 import java.util.HashSet;
 import java.util.Set;
 
-import elements.AbstractElement;
 import elements.animals.Animal;
+import elements.fields.farmings.Farming;
 
-public class Field extends AbstractElement {
-
+public class Field {
+	private static int counter = 0;
+	
+	private String name;
+	private int id;
 	private Set<Animal> animals;
 	private Farming farming;
 	private String city;
@@ -15,7 +18,8 @@ public class Field extends AbstractElement {
 	private int squareMeters;
 	
 	public Field(String name, String city, String adress, int squareMeters, Set<Animal> animals, Farming farming) {
-		super(counter, name);
+		this.name = name;
+		this.id = counter++;
 		this.city = city;
 		this.adress = adress;
 		this.squareMeters = squareMeters;
@@ -24,7 +28,8 @@ public class Field extends AbstractElement {
 	}
 
 	public Field(String name, String city, String adress, int squareMeters) {
-		super(counter, name);
+		this.name = name;
+		this.id = counter++;
 		this.city = city;
 		this.adress = adress;
 		this.squareMeters = squareMeters;
@@ -76,6 +81,14 @@ public class Field extends AbstractElement {
 
 	public void setSquareMeters(int squareMeters) {
 		this.squareMeters = squareMeters;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

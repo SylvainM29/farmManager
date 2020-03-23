@@ -1,5 +1,5 @@
 package elements.animals;
 
 enum AnimalType {
-	VEAU, GENISSE, VACHE, TAUREAU;
+	CALF, HEIFER, COW, BULL;
 }
