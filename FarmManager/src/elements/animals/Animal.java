@@ -19,6 +19,7 @@ public class Animal extends AbstractElement {
 		this.father = father;
 		this.mother = mother;
 		this.childs = new ArrayList<>();
+		this.treatmentList = new ArrayList<>();
 		this.type = type!=null ? type : this.type; //Si param type null, on conserve la valeur par defaut
 	}
 
@@ -67,7 +68,7 @@ public class Animal extends AbstractElement {
 		return treatmentList;
 	}
 
-	public void setTreatment( List<Treatment> treatmentList) {
-		this.treatmentList = treatmentList;
+	public void addTreatment(Treatment treatment) {
+		this.treatmentList.add(treatment);
 	}
 }
