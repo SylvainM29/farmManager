@@ -17,21 +17,27 @@ public class Insemination {
 		this.date = date;
 		this.bullId = bullId;
 		this.cow = cow;
+		cow.addInsemination(this);
 	}
 
 	public String getBullId() {
 		return bullId;
 	}
+	
 	public void setBullId(String bullId) {
 		this.bullId = bullId;
 	}
+	
 	public int getId() {
 		return id;
 	}
+	
 	public Date getDate() {
 		return date;
 	}
+	
 	public Animal getCow() {
 		return cow;
 	}
+	
 }

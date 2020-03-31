@@ -3,6 +3,7 @@ package elements.animals;
 import java.util.ArrayList;
 import java.util.List;
 import elements.fields.Field;
+import elements.inseminations.Insemination;
 import elements.treatments.Treatment;
 
 public class Animal {
@@ -16,6 +17,8 @@ public class Animal {
 	private AnimalType type = AnimalType.CALF;
 	private Field field;
 	private List<Treatment> treatmentList;
+	private boolean full = false;
+	private List<Insemination> currentInseminations;
 
 	public Animal(String name, Animal father, Animal mother, AnimalType type) {
 		this.name=name;
@@ -25,6 +28,7 @@ public class Animal {
 		this.childs = new ArrayList<>();
 		this.treatmentList = new ArrayList<>();
 		this.type = type!=null ? type : this.type; //Si param type null, on conserve la valeur par defaut
+		this.currentInseminations = new ArrayList<>();
 	}
 
 	public Animal getFather() {
@@ -82,5 +86,25 @@ public class Animal {
 
 	public int getId() {
 		return id;
+	}
+
+	public boolean isFull() {
+		return full;
+	}
+
+	public void setFull(boolean full) {
+		this.full = full;
+	}
+	
+	public List<Insemination> getCurrentInseminations() {
+		return currentInseminations;
+	}
+	
+	public void resetCurrentInsemination() {
+		this.currentInseminations = new ArrayList<>();
+	}
+	
+	public void addInsemination(Insemination insemination) {
+		this.currentInseminations.add(insemination);
 	}
 }
