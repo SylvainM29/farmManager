@@ -3,11 +3,11 @@ package elements.fields;
 import java.util.HashSet;
 import java.util.Set;
 
+import elements.AbstractElement;
 import elements.animals.Animal;
 import elements.fields.farmings.Farming;
 
-public class Field {
-	private static int counter = 0;
+public class Field extends AbstractElement {
 	
 	private String name;
 	private int id;
@@ -17,9 +17,9 @@ public class Field {
 	private String adress;
 	private int squareMeters;
 	
-	public Field(String name, String city, String adress, int squareMeters, Set<Animal> animals, Farming farming) {
+	public Field(int id, String name, String city, String adress, int squareMeters, Set<Animal> animals, Farming farming) {
 		this.name = name;
-		this.id = counter++;
+		this.id = id;
 		this.city = city;
 		this.adress = adress;
 		this.squareMeters = squareMeters;
@@ -27,9 +27,9 @@ public class Field {
 		this.farming = farming;
 	}
 
-	public Field(String name, String city, String adress, int squareMeters) {
+	public Field(int id, String name, String city, String adress, int squareMeters) {
 		this.name = name;
-		this.id = counter++;
+		this.id = id;
 		this.city = city;
 		this.adress = adress;
 		this.squareMeters = squareMeters;
