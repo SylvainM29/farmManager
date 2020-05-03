@@ -21,7 +21,7 @@ public class FieldDB extends AbstractDB {
 			Field field;
 			while(result.next()){
 				field = new Field(result.getInt(1),	result.getString(2), result.getString(3), result.getString(4), result.getInt(5));
-				field.setFarming(dbManager.getFarmingById(result.getInt(7)));
+				field.setFarming(dbManager.getFarming(result.getInt(7)));
 				fieldList.add(field);
 			}
 		}
@@ -33,7 +33,7 @@ public class FieldDB extends AbstractDB {
 		try (ResultSet result = dbConnection.createStatement().executeQuery("SELECT * FROM "+tableName+" WHERE id="+id)){
 			result.next();
 			Field field = new Field(result.getInt(1),	result.getString(2), result.getString(3), result.getString(4), result.getInt(5));
-			field.setFarming(dbManager.getFarmingById(result.getInt(7)));
+			field.setFarming(dbManager.getFarming(result.getInt(7)));
 			return field;
 		}
 	}
@@ -43,7 +43,7 @@ public class FieldDB extends AbstractDB {
 		try (ResultSet result = dbConnection.createStatement().executeQuery("SELECT * FROM "+tableName+" WHERE name="+name)){
 			result.next();
 			Field field = new Field(result.getInt(1),	result.getString(2), result.getString(3), result.getString(4), result.getInt(5));
-			field.setFarming(dbManager.getFarmingById(result.getInt(7)));
+			field.setFarming(dbManager.getFarming(result.getInt(7)));
 			return field;
 		}
 	}

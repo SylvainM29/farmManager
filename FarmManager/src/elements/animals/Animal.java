@@ -1,5 +1,6 @@
 package elements.animals;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,27 +15,30 @@ public class Animal extends AbstractElement {
 
 	private int id;
 	private String name;
+	private Date birthdate;
+	private AnimalType type = AnimalType.CALF;
 	private Animal father;
 	private Animal mother;
-	private Set<Animal> childs;
-	private AnimalType type = AnimalType.CALF;
 	private Field field;
-	private List<Treatment> treatmentList;
 	private boolean full = false;
+	private Set<Animal> childs;
+	private List<Treatment> treatmentList;
 	private List<Insemination> currentInseminations;
 
-	public Animal(int id, String name, Animal father, Animal mother, AnimalType type) {
+	public Animal(int id, String name, Date birthdate, Animal father, Animal mother, AnimalType type, boolean full) {
 		this.id=id;
 		this.name=name;
+		this.birthdate = birthdate;
 		this.father = father;
 		this.mother = mother;
 		this.childs = new HashSet<>();
 		this.treatmentList = new ArrayList<>();
 		this.type = type!=null ? type : this.type; //Si param type null, on conserve la valeur par defaut
 		this.currentInseminations = new ArrayList<>();
+		this.full = full;
 	}
 	
-	public Animal(int id, String name, String typeString, boolean full) {
+	public Animal(int id, String name, Date birthdate, String typeString, boolean full) {
 		this.id=id;
 		this.name=name;
 		this.childs = new HashSet<>();
@@ -76,4 +80,12 @@ public class Animal extends AbstractElement {
 	public List<Insemination> getCurrentInseminations() { return currentInseminations;}
 	public void resetCurrentInsemination() { this.currentInseminations = new ArrayList<>();}
 	public void addInsemination(Insemination insemination) { this.currentInseminations.add(insemination);}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
 }

@@ -23,8 +23,8 @@ public class FarmingDB extends AbstractDB {
 			Farming farming;
 			while(result.next()){
 				farming = new Farming(result.getInt(1),	result.getString(2), new Date(result.getInt(3)), new Date((result.getInt(4))));
-				farming.setType(dbManager.getFarmingTypeById(result.getInt(5)));
-				farming.setField(dbManager.getFieldById(result.getInt(6)));
+				farming.setType(dbManager.getFarmingType(result.getInt(5)));
+				farming.setField(dbManager.getField(result.getInt(6)));
 				farmingList.add(farming);
 			}
 		}
@@ -36,8 +36,8 @@ public class FarmingDB extends AbstractDB {
 		try (ResultSet result = dbConnection.createStatement().executeQuery("SELECT * FROM "+tableName+" WHERE id="+id)){
 			result.next();
 			Farming farming = new Farming(result.getInt(1),	result.getString(2), new Date(result.getInt(3)), new Date((result.getInt(4))));
-			farming.setType(dbManager.getFarmingTypeById(result.getInt(5)));
-			farming.setField(dbManager.getFieldById(result.getInt(6)));
+			farming.setType(dbManager.getFarmingType(result.getInt(5)));
+			farming.setField(dbManager.getField(result.getInt(6)));
 			return farming;
 		}
 	}
@@ -47,8 +47,8 @@ public class FarmingDB extends AbstractDB {
 		try (ResultSet result = dbConnection.createStatement().executeQuery("SELECT * FROM "+tableName+" WHERE name="+name)){
 			result.next();
 			Farming farming = new Farming(result.getInt(1),	result.getString(2), new Date(result.getInt(3)), new Date((result.getInt(4))));
-			farming.setType(dbManager.getFarmingTypeById(result.getInt(5)));
-			farming.setField(dbManager.getFieldById(result.getInt(6)));
+			farming.setType(dbManager.getFarmingType(result.getInt(5)));
+			farming.setField(dbManager.getField(result.getInt(6)));
 			return farming;
 		}
 	}
@@ -85,8 +85,8 @@ public class FarmingDB extends AbstractDB {
 			dbConnection.createStatement().executeQuery("UPDATE "+tableName+" SET "+
 				"id = "+farming.getId()+","+
 				"name = '"+farming.getName()+"',"+
-				"start_date = "+farming.getStartDate()+","+
-				"end_date = "+farming.getEndDate()+","+
+				"start_date = "+farming.getStartDate().getTime()+","+
+				"end_date = "+farming.getEndDate().getTime()+","+
 				"fk_farming_type = "+(farming.getType()==null ? "null" : farming.getType().getId())+","+
 				"fk_field = "+(farming.getField()==null ? "null" : farming.getField().getId())+
 				"WHERE id = "+farming.getId());

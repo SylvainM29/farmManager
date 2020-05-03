@@ -1,6 +1,8 @@
 package elements.fields.farmings;
 
-public class FarmingType {
+import elements.AbstractElement;
+
+public class FarmingType extends AbstractElement {
 	private int id;
 	private String name;
 	private int daysDuration;

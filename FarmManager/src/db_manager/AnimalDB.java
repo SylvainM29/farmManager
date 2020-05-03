@@ -3,6 +3,7 @@ package db_manager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import elements.AbstractElement;
@@ -22,8 +23,12 @@ public class AnimalDB extends AbstractDB {
 			while(result.next()){
 				animal = new Animal(result.getInt(1),
 									result.getString(2),
+									new Date(result.getInt(8)),
 									result.getString(3),
 									(result.getInt(4)==1));
+				animal.setFather(dbManager.getAnimal(result.getInt(5)));
+				animal.setFather(dbManager.getAnimal(result.getInt(6)));
+				animal.setField(dbManager.getField(result.getInt(7)));
 				animalList.add(animal);
 			}
 		}
@@ -34,10 +39,10 @@ public class AnimalDB extends AbstractDB {
 	public Animal getById(int id) throws SQLException{
 		try (ResultSet result = dbConnection.createStatement().executeQuery("SELECT * FROM "+tableName+" WHERE id="+id)){
 			result.next();
-			Animal animal = new Animal(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4)==1);
-			animal.setFather(dbManager.getAnimalById(result.getInt(5)));
-			animal.setFather(dbManager.getAnimalById(result.getInt(6)));
-			animal.setField(dbManager.getFieldById(result.getInt(7)));
+			Animal animal = new Animal(result.getInt(1),result.getString(2),new Date(result.getInt(8)),result.getString(3),result.getInt(4)==1);
+			animal.setFather(dbManager.getAnimal(result.getInt(5)));
+			animal.setFather(dbManager.getAnimal(result.getInt(6)));
+			animal.setField(dbManager.getField(result.getInt(7)));
 			return animal;
 		}
 	}
@@ -46,7 +51,11 @@ public class AnimalDB extends AbstractDB {
 	public Animal getByName(String name) throws SQLException{
 		try (ResultSet result = dbConnection.createStatement().executeQuery("SELECT * FROM "+tableName+" WHERE name="+name)){
 			result.next();
-			return new Animal(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4)==1);
+			Animal animal = new Animal(result.getInt(1),result.getString(2),new Date(result.getInt(8)),result.getString(3),result.getInt(4)==1);
+			animal.setFather(dbManager.getAnimal(result.getInt(5)));
+			animal.setFather(dbManager.getAnimal(result.getInt(6)));
+			animal.setField(dbManager.getField(result.getInt(7)));
+			return animal;
 		}
 	}
 
@@ -64,7 +73,8 @@ public class AnimalDB extends AbstractDB {
 					animal.getType()+"',"+
 				   (animal.getFather()==null ? "null" : animal.getFather().getId())+","+
 				   (animal.getMother()==null ? "null" : animal.getMother().getId())+","+
-				   (animal.getField()==null ? "null" : animal.getField().getId())+")";
+				   (animal.getField()==null ? "null" : animal.getField().getId())+","+
+				   animal.getBirthdate().getTime()+")";
 			dbConnection.createStatement().executeQuery(str);
 		}
 		dbConnection.commit();
@@ -85,7 +95,8 @@ public class AnimalDB extends AbstractDB {
 				"type = '"+animal.getType()+"',"+
 				"fk_animal_father = "+(animal.getFather()==null ? "null" : animal.getFather().getId())+","+
 				"fk_animal_mother = "+(animal.getMother()==null ? "null" : animal.getMother().getId())+","+
-				"fk_field = "+(animal.getField()==null ? "null" : animal.getField().getId())+
+				"fk_field = "+(animal.getField()==null ? "null" : animal.getField().getId())+","+
+				"birthdate = "+animal.getBirthdate()+
 				"WHERE id = "+animal.getId());
 		}
 		dbConnection.commit();

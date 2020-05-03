@@ -17,7 +17,7 @@ public class AnimalTest {
 	@Test
 	public void testGetCurrentTreatment(){
 		System.out.println("--- AnimalTest.testGetCurrentTreatment ---");
-		Animal animal = new Animal(1, "Genious", null, null, AnimalType.COW);
+		Animal animal = new Animal(1, "Genious", new Date(1500), null, null, AnimalType.COW, false);
 		TreatmentType treatmentType = new TreatmentType("traitement 1", 2);
 		animal.addTreatment(new Treatment("traitement 1", new Date(Calendar.getInstance().getTime().getTime()), treatmentType, animal));
 		Assert.assertNotNull(animal.getCurrentTreatment());

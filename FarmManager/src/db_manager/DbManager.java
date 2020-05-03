@@ -18,6 +18,7 @@ public class DbManager {
 	private AnimalDB animalDB;
 	private FieldDB fieldDB;
 	private FarmingDB farmingDB;
+	private FarmingTypeDB farmingTypeDB;
 	
 	public DbManager () {
 		initDB();
@@ -43,8 +44,12 @@ public class DbManager {
 		return animalDB.getAll();
 	}
 
-	public Animal getAnimalById(int id) throws SQLException {
+	public Animal getAnimal(int id) throws SQLException {
 		return animalDB.getById(id);
+	}
+
+	public Animal getAnimal(String name) throws SQLException {
+		return animalDB.getByName(name);
 	}
 	
 	public boolean addAnimals(List<Animal> animals) throws SQLException {
@@ -59,8 +64,12 @@ public class DbManager {
 		return fieldDB.getAll();
 	}
 
-	public Field getFieldById(int id) throws SQLException {
+	public Field getField(int id) throws SQLException {
 		return fieldDB.getById(id);
+	}
+
+	public Field getField(String name) throws SQLException {
+		return fieldDB.getByName(name);
 	}
 	
 	public boolean addFields(List<Field> fields) throws SQLException {
@@ -75,17 +84,50 @@ public class DbManager {
 		return farmingDB.getAll();
 	}
 
-	public Farming getFarmingById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Farming getFarming(int id) throws SQLException {
+		return farmingDB.getById(id);
+	}
+
+	public Farming getFarming(String name) throws SQLException {
+		return farmingDB.getByName(name);
 	}
 	
 	public boolean addFarmings(List<Farming> farmings) throws SQLException {
 		return farmingDB.add(farmings);
 	}
-
-	public FarmingType getFarmingTypeById(int int1) {
+	
+	public boolean updateFarmings(List<Farming> farmings) throws SQLException {
+		return farmingDB.update(farmings);
+	}
+	
+	public List<FarmingType> getFarmingTypes() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public FarmingType getFarmingType(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public FarmingType getFarmingType(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public boolean addFarmingTypes(List<FarmingType> farmingTypes) throws SQLException {
+		return farmingTypeDB.add(farmingTypes);
+	}
+	
+	public boolean updateFarmingTypes(List<Farming> farmingTypes) throws SQLException {
+		return farmingTypeDB.update(farmingTypes);
+	}
+
+	public void closeConnection() {
+		try {
+			dbConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 	}
 }
